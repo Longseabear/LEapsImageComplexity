@@ -22,8 +22,10 @@ class BatchProcess:
                 for task_obj in self.tasks:
                     img, info = task_obj.run(img, info)
             except Exception as e:
-                print("fail: ", task_obj.name, info)
+                print("fail: ", e, task_obj.name, info)
 
-batch = BatchProcess('img_src/DIV2K_train_HR', [Rescale(), ImageResolutionPrint(),
-                                                ImageSaver('img_src/DIV2K_train_1080pHD', True)])
+# batch = BatchProcess('img_src/DIV2K_train_HR', [Rescale(), ImageResolutionPrint(),
+#                                                 ImageSaver('img_src/DIV2K_train_1080pHD', True)])
+batch = BatchProcess('img_src/DIV2K_train_1080pHD', [AddIntraBitRate('img_src/encoded_train_1080pHD')])
+
 batch.run()

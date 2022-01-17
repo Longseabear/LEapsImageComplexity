@@ -4,6 +4,28 @@ import path
 import os
 import numpy as np
 
+class AddIntraBitRate:
+    def __init__(self, bit_info_path):
+        self.name = "AddIntraBitRate"
+        self.bit_info_path = bit_info_path
+
+    def run(self, img, info):
+        base_file_name = os.path.basename("{}.mp4".format(info['filename'].split('.')[0]))
+        file_path = os.path.join(self.bit_info_path, base_file_name)
+        bit_rate = os.path.getsize(file_path)
+        info['intra_bits'] = bit_rate
+        print(bit_rate)
+        return img, info
+
+class AddSimpleGradientMagnitude:
+    def __int__(self):
+        pass
+
+img = np.array(Image.open('img_src/0000.png'))
+img = np.gradient(img)
+print(img[0].shape, len(img))
+
+
 class ImageSaver:
     def __init__(self, output_folder, renumbering=False):
         self.name = "print task"
