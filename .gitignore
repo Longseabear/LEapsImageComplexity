@@ -1,3 +1,5 @@
 base/img_src
 base/.idea
 base/.vscode
+image_complexity/build
+**/.vscode
