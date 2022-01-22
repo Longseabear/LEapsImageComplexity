@@ -1,5 +1,5 @@
 
-#include "./lodepng.h"
+#include "leapsImageLib.h"
 #include <iostream>
 
 void decodeOneStep(const char* filename) {
@@ -9,7 +9,7 @@ void decodeOneStep(const char* filename) {
   unsigned error = lodepng::decode(image, width, height, filename);
 
   if(error) std::cout << "decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
-  
+
   //the pixels are now in the vector "image", 4 bytes per pixel, ordered RGBARGBA..., use it as texture, draw it, ...
   printf("%d %d %d %d\n", image[0], image[1], image[2], image[3]);
 }
@@ -45,12 +45,11 @@ void decodeWithState(const char* filename) {
   //if there's an error, display it
   if(error) std::cout << "decoder error " << error << ": "<< lodepng_error_text(error) << std::endl;
 
-  //the pixels are now in the vector "image", 4 bytes per pixel, ordered RGBARGBA..., use it as texture, draw it, ...
-  //State state contains extra information about the PNG such as text chunks, ...
+  //the pixels are now in the vector "image", 4 bytes per pixel, ordered RGBARGBA..., use it as texture, draw it, ... 
 }
 
 int main(int argc, char *argv[]) {
   const char* filename = argc > 1 ? argv[1] : "Lenna.png";
-
+  
   decodeOneStep(filename);
 }

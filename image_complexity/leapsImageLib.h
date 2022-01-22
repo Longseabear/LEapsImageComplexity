@@ -4,17 +4,24 @@
 
 #include "./lodepng.h"
 
+
 namespace LeapsImageLib{
+    using uchar = unsigned char;
+    using uint = unsigned int;
     class Image
     {
-        using uchar = unsigned char;
     public:
         Image();
-        Image(int,int);
+        Image(uint, uint);
         Image(const char*);
+        uint width, height;
+        uchar* ptr(uint);
+        uchar* ptr(uint, uint);
+        void save(const char*);
+
+        //Todo: private
+        std::vector<uchar> raw; 
     private:
-        uchar* buffer;
-        unsigned width, height;
     };
 }
 
